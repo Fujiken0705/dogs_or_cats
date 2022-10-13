@@ -56,24 +56,22 @@ def get_square_image(target_img):
 
 
 ### 表示部分
-st.title("cat or dog ?")
+st.title("dogs or cats ?")
 
-uploaded_file = st.file_uploader("判定したい画像を選んでね")
+uploaded_file = st.file_uploader("判定したい画像を選んでください")
 if uploaded_file is not None:
 	try:
 		# 画像を読み込む
 		uploaded_img = Image.open(uploaded_file)
 		uploaded_img = ImageOps.exif_transpose(uploaded_img)  # 画像を適切な向きに補正する
 
-		# 犬猫判定
+		# 犬か猫か判定する
 		pred = sample_predict(uploaded_img)
 
-		# 結果表示
+		# 結果を表示する表示
 		st.info(f"これは**{get_result(pred)}**です！")
 		score = np.int(np.round(pred, 2)*20)
 		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
 		st.image(uploaded_img, use_column_width=True)
 	except:
-		st.error("判定できませんでした・・・適切な画像をアップロードしてください！")
-
-
+		st.error("判定できませんでした。別の画像をアップロードしてみてください！")
