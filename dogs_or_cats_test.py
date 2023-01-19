@@ -74,5 +74,5 @@ if uploaded_file is not None:
 		score = np.int(np.round(pred, 2)*20)
 		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
 		st.image(uploaded_img, use_column_width=True)
-else:
-	st.error("判定できませんでした。別の画像をアップロードしてみてください！")
+	except:
+		st.error("判定できませんでした。別の画像をアップロードしてみてください！")
