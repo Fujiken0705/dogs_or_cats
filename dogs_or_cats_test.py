@@ -60,13 +60,14 @@ def get_square_image(target_img):
 st.title("犬猫画像判別アプリ")
 
 uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
+
 if uploaded_file is not None:
 	try:
 		# 画像を読み込む
 		uploaded_img = Image.open(uploaded_file)
 		uploaded_img = ImageOps.exif_transpose(uploaded_img)  # 画像を適切な向きに補正する
 
-		# 犬か猫か判定する
+		# 犬か猫か判定
 		pred = sample_predict(uploaded_img)
 
 		# 結果を表示
@@ -75,4 +76,5 @@ if uploaded_file is not None:
 		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
 		st.image(uploaded_img, use_column_width=True)
 	except:
+		st.error
 		st.error("判定できませんでした。別の画像をアップロードしてみてください！")
