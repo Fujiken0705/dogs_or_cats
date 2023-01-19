@@ -39,21 +39,6 @@ def get_result(prediction):
 	return result
 
 
-def get_square_image(target_img):
-	# 画像に余白を加えて正方形にする
-	bg_color = target_img.resize((1, 1)).getpixel((0, 0))
-	width, height = target_img.size
-	if width == height:
-		return target_img
-	elif width > height:
-		resized_img = Image.new(target_img.mode, (width, width), bg_color)
-		resized_img.paste(target_img, (0, (width - height) // 2))
-		return resized_img
-	else:
-		resized_img = Image.new(target_img.mode, (height, height), bg_color)
-		resized_img.paste(target_img, ((height - width) // 2, 0))
-		return resized_img
-
 
 ### 表示部分
 st.title("犬猫判別アプリ")
