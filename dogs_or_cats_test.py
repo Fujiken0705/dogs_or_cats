@@ -3,7 +3,8 @@
 
 import numpy as np
 import streamlit as st
-from PIL import Image, ImageOps
+from PIL import Image
+from PIL import ImageOps
 
 
 ### モデルの導入
