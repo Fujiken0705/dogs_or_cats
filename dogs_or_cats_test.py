@@ -8,7 +8,7 @@ from PIL import Image, ImageOps
 
 
 ### モデル部分
-model = tf.keras.models.load_model("src/saved_model.h5")
+model = tf.keras.models.load_model("src/dogs_or_cats_model.h5")
 
 
 def sample_predict(img):
