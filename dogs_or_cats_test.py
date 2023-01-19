@@ -58,7 +58,7 @@ def get_square_image(target_img):
 ### 表示部分
 st.title("cat or dog ?")
 
-uploaded_file = st.file_uploader("判定したい画像を選んでね")
+uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
 if uploaded_file is not None:
 	try:
 		# 画像を読み込む
@@ -75,4 +75,4 @@ if uploaded_file is not None:
 		st.image(uploaded_img, use_column_width=True)
 		
 	except:
-		st.error("  ")
+		break
