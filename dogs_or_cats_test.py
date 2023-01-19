@@ -4,12 +4,11 @@
 import numpy as np
 import streamlit as st
 import tensorflow as tf
-from PIL import Image
-from PIL import ImageOps
+from PIL import Image, ImageOps
 
 
-### モデルの導入
-model = tf.keras.models.load_model("src/dogs_or_cats_model.h5")
+### モデル部分
+model = tf.keras.models.load_model("src/saved_model.h5")
 
 
 def sample_predict(img):
@@ -57,24 +56,22 @@ def get_square_image(target_img):
 
 
 ### 表示部分
-st.title("犬猫画像判別アプリ")
+st.title("cat or dog ?")
 
-uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
-
+uploaded_file = st.file_uploader("判定したい画像を選んでね")
 if uploaded_file is not None:
 	try:
 		# 画像を読み込む
 		uploaded_img = Image.open(uploaded_file)
 		uploaded_img = ImageOps.exif_transpose(uploaded_img)  # 画像を適切な向きに補正する
 
-		# 犬か猫か判定
+		# 犬猫判定
 		pred = sample_predict(uploaded_img)
 
-		# 結果を表示
+		# 結果表示
 		st.info(f"これは**{get_result(pred)}**です！")
 		score = np.int(np.round(pred, 2)*20)
 		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
 		st.image(uploaded_img, use_column_width=True)
 	except:
-		st.error
-		st.error("判定できませんでした。別の画像をアップロードしてみてください！")
+		st.error("判定できませんでした・・・適切な画像をアップロードしてください！")
