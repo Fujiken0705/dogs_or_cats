@@ -56,7 +56,7 @@ def get_square_image(target_img):
 
 
 ### 表示部分
-st.title("犬猫画像判別アプリ ?")
+st.title("犬猫画像判別アプリ")
 
 uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
 if uploaded_file is not None:
