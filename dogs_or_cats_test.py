@@ -75,4 +75,4 @@ if uploaded_file is not None:
 		st.image(uploaded_img, use_column_width=True)
 		
 	except:
-		break
+		
