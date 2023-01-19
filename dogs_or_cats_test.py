@@ -56,7 +56,7 @@ def get_square_image(target_img):
 
 
 ### 表示部分
-st.title("cat or dog ?")
+st.title("犬猫画像判別アプリ ?")
 
 uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
 if uploaded_file is not None:
@@ -69,7 +69,7 @@ if uploaded_file is not None:
 		pred = sample_predict(uploaded_img)
 
 		# 結果を表示する
-		st.info(f"これは**{get_result(pred)}**です！")
+		st.info(f"これは**{get_result(pred)}**の画像です！")
 		score = np.int(np.round(pred, 2)*20)
 		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
 		st.image(uploaded_img, use_column_width=True)
