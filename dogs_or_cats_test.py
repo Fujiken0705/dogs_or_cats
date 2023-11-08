@@ -60,20 +60,20 @@ st.title("犬猫画像判別アプリ")
 
 uploaded_file = st.file_uploader("判定したい画像をアップロードしてください")
 if uploaded_file is not None:
-	try:
-		# 画像を読み込む
-		uploaded_img = Image.open(uploaded_file)
-		uploaded_img = ImageOps.exif_transpose(uploaded_img)  # 画像を適切な向きに補正する
+    # 画像を読み込む
+    uploaded_img = Image.open(uploaded_file)
+    uploaded_img = ImageOps.exif_transpose(uploaded_img)  # 画像を適切な向きに補正する
+    st.image(uploaded_img, use_column_width=True)  # 画像を表示する
 
-		# 犬か猫か判定する
-		pred = sample_predict(uploaded_img)
+    try:
+        # 犬か猫か判定する
+        pred = sample_predict(uploaded_img)
 
-		# 結果を表示する
-		st.info(f"これは**{get_result(pred)}**の画像です！")
-		score = np.int(np.round(pred, 2)*20)
-		st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
-		st.image(uploaded_img, use_column_width=True)
-		
-	except:
-		st.write("エラーの処理がうまくいきませんでした…")
-		
+        # 結果を表示する
+        st.info(f"これは**{get_result(pred)}**の画像です！")
+        score = int(np.round(pred, 2) * 20)
+        st.text(f"犬 0 |{'-'*score}*{'-'*(19-score)}| 100 猫")
+        
+    except Exception as e:  # エラーをキャッチして、エラーメッセージを表示する
+        st.error("エラーの処理がうまくいきませんでした…")
+        st.error(f"エラー詳細: {e}")
